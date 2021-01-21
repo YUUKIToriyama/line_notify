@@ -1,6 +1,6 @@
 {
   "name": "irozaro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "LINE Notify APIを使ってみるサンプルコードです",
   "main": "index.js",
   "bin": "index.js",
