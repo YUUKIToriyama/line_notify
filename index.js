@@ -11,7 +11,7 @@ const cli = meow(
 		--message, -m	message
 		--image, -i	image url
 	Examples
-		$node cli.js -m "Hello, my favarite photo for you!" -i "https://upload.wikimedia.org/wikipedia/ja/thumb/6/61/Wataraseriver.jpg/300px-Wataraseriver.jpg"
+		$node index.js -m "Hello, my favarite photo for you!" -i "https://upload.wikimedia.org/wikipedia/ja/thumb/6/61/Wataraseriver.jpg/300px-Wataraseriver.jpg"
 	`, {
 	flags: {
 		message: {
