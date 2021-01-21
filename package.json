@@ -1,0 +1,23 @@
+{
+  "name": "line_notify",
+  "version": "1.0.0",
+  "description": "LINE Notify APIを使ってみるサンプルコードです",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YUUKIToriyama/line_notify.git"
+  },
+  "author": "YUUKIToriyama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YUUKIToriyama/line_notify/issues"
+  },
+  "homepage": "https://github.com/YUUKIToriyama/line_notify#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "querystring": "^0.2.0"
+  }
+}
