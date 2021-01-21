@@ -6,7 +6,7 @@ const accessToken = require("./src/accessToken");
 const cli = meow(
 	`
 	Usage
-		$node cli.js <input>
+		$node index.js <input>
 	Options
 		--message, -m	message
 		--image, -i	image url
