@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "LINE Notify APIを使ってみるサンプルコードです",
   "main": "cli.js",
+  "bin": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/YUUKIToriyama/line_notify#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "meow": "^9.0.0",
     "querystring": "^0.2.0"
   }
 }
