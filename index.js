@@ -1,4 +1,4 @@
-/* index.js */
+#!/usr/bin/env node
 const cli = require("cac")("irozaro");
 const prompts = require("prompts");
 const setAccessToken = require("./src/setAccessToken");
@@ -49,14 +49,12 @@ cli.command("send", "対話的にメッセージを作成する").action(async (
 });
 
 // オブションの指定でもメッセージを送信することができる
-cli.option("-m, --message <string>", "送信したいメッセージ", {
-	default: "Hello!"
-});
+cli.option("-m, --message <string>", "送信したいメッセージ");
 cli.option("-i, --image <url>", "送信したい画像のURLを指定", {
 	defalt: ""
 });
 
 const parsed = cli.parse();
-if (parsed.options.message != undefined) {
+if (parsed.options.message !== undefined) {
 	sendMessage(parsed.options.message, parsed.options.image);
 }
