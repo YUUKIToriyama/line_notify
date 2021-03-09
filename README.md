@@ -11,10 +11,9 @@ npm install -g irozaro
 ```
 2. アクセストークンの設定
 
-設定ファイルを開き、トークンをご自身のものに変更して下さい。  
-```bash
-vim /usr/lib/node_modules/irozaro/src/accessToken.js
-```
+`irozaro init`を実行するとアクセストークンの入力画面が現れます。
+入力されたアクセストークンはホームディレクトリに`.irozaro`というファイルで保存されます。
+
 3. Go!
 
 ```bash
@@ -23,5 +22,5 @@ irozaro -m "<message>" -i "<imageURL>"
 
 ## Usage
 ```bash
-node index.js --help
+irozaro --help
 ```
