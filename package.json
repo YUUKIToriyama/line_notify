@@ -2,7 +2,7 @@
   "name": "irozaro",
   "version": "1.0.1",
   "description": "LINE Notify APIを使ってみるサンプルコードです",
-  "main": "index.js",
+  "keywords": ["line", "cli", "node"],
   "bin": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
