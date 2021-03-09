@@ -5,7 +5,7 @@ const setAccessToken = require("./src/setAccessToken");
 const sendMessage = require("./src/index");
 
 // アプリのバージョン
-cli.version("1.0.1");
+cli.version("1.1.0");
 // ヘルプページを用意
 cli.help();
 
