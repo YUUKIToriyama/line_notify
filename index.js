@@ -1,32 +1,62 @@
-#!/usr/bin/env node
-const meow = require("meow");
-const lineNotify = require("./src/lineNotify");
-const accessToken = require("./src/accessToken");
+/* index.js */
+const cli = require("cac")("irozaro");
+const prompts = require("prompts");
+const setAccessToken = require("./src/setAccessToken");
+const sendMessage = require("./src/index");
 
-const cli = meow(
-	`
-	Usage
-		$node index.js <input>
-	Options
-		--message, -m	message
-		--image, -i	image url
-	Examples
-		$node index.js -m "Hello, my favarite photo for you!" -i "https://upload.wikimedia.org/wikipedia/ja/thumb/6/61/Wataraseriver.jpg/300px-Wataraseriver.jpg"
-	`, {
-	flags: {
-		message: {
-			type: "string",
-			alias: "m",
-			default: "Hello!"
+// アプリのバージョン
+cli.version("1.0.1");
+// ヘルプページを用意
+cli.help();
+
+// サブコマンドinit
+cli.command("init", "初期設定を行なう").action(async () => {
+	let question = {
+		type: "text",
+		name: "accessToken",
+		message: "Your LINE Notify Access Token"
+	};
+	let answer = await prompts(question);
+	setAccessToken(answer.accessToken);
+	sendMessage("Hello Irozaro!", "");
+});
+
+// サブコマンドsend
+cli.command("send", "対話的にメッセージを作成する").action(async () => {
+	let questions = [
+		{
+			type: "text",
+			name: "message",
+			message: "メッセージを入力して下さい"
 		},
-		image: {
-			type: "string",
-			alias: "i"
-		}
-	}
-}
-);
+		{
+			type: "text",
+			name: "imageUrl",
+			message: "画像を追加しますか?"
+		},
+		{
+			type: "confirm",
+			name: "confirmation",
+			message: "Send a message",
+			initial: true
 
-const notify = new lineNotify(accessToken);
-notify.setRequest(cli.flags.message, cli.flags.image);
-notify.getResponse();
+		}
+	];
+	let answer = await prompts(questions);
+	if (answer.confirmation) {
+		sendMessage(answer.message, answer.imageUrl);
+	}
+});
+
+// オブションの指定でもメッセージを送信することができる
+cli.option("-m, --message <string>", "送信したいメッセージ", {
+	default: "Hello!"
+});
+cli.option("-i, --image <url>", "送信したい画像のURLを指定", {
+	defalt: ""
+});
+
+const parsed = cli.parse();
+if (parsed.options.message != undefined) {
+	sendMessage(parsed.options.message, parsed.options.image);
+}
