@@ -25,6 +25,6 @@
     "axios": "^0.21.1",
     "cac": "^6.7.2",
     "prompts": "^2.4.0",
-    "querystring": "^0.2.0"
+    "querystring": "^0.2.1"
   }
 }
