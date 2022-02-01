@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YUUKIToriyama/line_notify.git"
+    "url": "git+https://github.com/YUUKIToriyama/irozaro.git"
   },
-  "author": "YUUKIToriyama",
-  "license": "ISC",
+  "author": "YUUKIToriyama<github@toriyama.dev>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/YUUKIToriyama/line_notify/issues"
+    "url": "https://github.com/YUUKIToriyama/irozaro/issues"
   },
-  "homepage": "https://github.com/YUUKIToriyama/line_notify#readme",
+  "homepage": "https://github.com/YUUKIToriyama/irozaro#readme",
   "dependencies": {
     "axios": "^0.25.0",
     "cac": "^6.7.12",
