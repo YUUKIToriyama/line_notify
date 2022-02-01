@@ -1,7 +1,4 @@
-/* lineNotify.js */
-
 const axios = require("axios");
-const qs = require("querystring");
 
 class lineNotify {
 	constructor(_accessToken) {
@@ -17,19 +14,18 @@ class lineNotify {
 		method: "POST",
 		headers: {},
 		json: true,
-		data: {}
+		data: ""
 	}
 
 	setRequest = (_message, _imageURL) => {
 		this.options.headers = this.headers;
-		const data = {
-			"message": _message,
-		}
+		const param = new URLSearchParams("");
+		param.append("message", _message);
 		if (_imageURL != undefined) {
 			data["imageFullsize"] = _imageURL;
 			data["imageThumbnail"] = "https://example.com";
 		}
-		this.options.data = qs.stringify(data);
+		this.options.data = param.toString();
 	}
 
 	getResponse = async () => {
