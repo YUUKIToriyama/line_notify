@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-const cli = require("cac")("irozaro");
-const prompts = require("prompts");
-const setAccessToken = require("./src/setAccessToken");
-const sendMessage = require("./src/index");
+import cac from 'cac';
+import prompts from 'prompts';
+import config from '@toriyama/config';
+import path from 'path';
+import LineNotify from './LineNotify.js';
 
+const cli = cac("irozaro");
 // アプリのバージョン
 cli.version("1.1.0");
 // ヘルプページを用意
@@ -11,14 +13,14 @@ cli.help();
 
 // サブコマンドinit
 cli.command("init", "初期設定を行なう").action(async () => {
-	let question = {
-		type: "text",
-		name: "accessToken",
-		message: "Your LINE Notify Access Token"
-	};
-	let answer = await prompts(question);
-	setAccessToken(answer.accessToken);
-	sendMessage("Hello Irozaro!", "");
+	// 設定ファイルを作成
+	await config.init({
+		message: "Your LINE Notify Access Token",
+		filePath: path.join(process.env["HOME"], ".irozaro")
+	});
+	// 疎通確認
+	const notify = new LineNotify();
+	notify.checkConnectivity();
 });
 
 // サブコマンドsend
@@ -42,19 +44,21 @@ cli.command("send", "対話的にメッセージを作成する").action(async (
 
 		}
 	];
-	let answer = await prompts(questions);
+	let answer = await prompts.prompt(questions);
+	const notify = new LineNotify();
 	if (answer.confirmation) {
-		sendMessage(answer.message, answer.imageUrl);
+		notify.sendMessage(answer.message, answer.imageUrl);
 	}
 });
 
 // オブションの指定でもメッセージを送信することができる
 cli.option("-m, --message <string>", "送信したいメッセージ");
 cli.option("-i, --image <url>", "送信したい画像のURLを指定", {
-	defalt: ""
+	default: ""
 });
 
 const parsed = cli.parse();
 if (parsed.options.message !== undefined) {
-	sendMessage(parsed.options.message, parsed.options.image);
+	const notify = new LineNotify();
+	notify.sendMessage(parsed.options.message, parsed.options.image);
 }
